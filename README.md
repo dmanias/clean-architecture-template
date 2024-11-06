@@ -100,7 +100,7 @@ src/
 │   │           │   ├── port/          # Interfaces for external deps
 │   │           │   │   ├── input/     # Use case interfaces
 │   │           │   │   └── output/    # Repository/Service interfaces
-│   │           │   ├── validator/     # Domain validators
+│   │           │   ├── validation/     # Domain validators
 │   │           │   └── exception/     # Domain-specific exceptions
 │   │           ├── application/
 │   │           │   ├── service/       # Use case implementations
@@ -150,7 +150,7 @@ Response ← DTO    ← Repository (interface in domain)
 - Define value objects in `domain/valueobject`
 - Define domain events in `domain/event`
 - Define interfaces in `domain/port`
-- Implement validators in `domain/validator`
+- Implement validators in `domain/validation`
   - Create domain-specific validators
   - Extend BaseValidator interface
   - Handle validation logic for entities
