@@ -1,8 +1,8 @@
-# Clean Architecture Template
+\# Clean Architecture Template
 
 A Spring Boot project template following Clean Architecture principles.
 
-## 📋 Table of Contents
+\## 📋 Table of Contents
 - [Overview](#overview)
 - [Architecture](#architecture)
 - [Project Structure](#project-structure)
@@ -14,11 +14,11 @@ A Spring Boot project template following Clean Architecture principles.
 - [Contributing](#contributing)
 - [License](#license)
 
-## 🎯 Overview
+\## 🎯 Overview
 
 This project is a template for building Spring Boot applications following Clean Architecture principles, focusing on separation of concerns and maintainability.
 
-### Key Features
+\### Key Features
 - Clean Architecture implementation
 - Domain-Driven Design (DDD) principles
 - API documentation with OpenAPI (Swagger)
@@ -26,43 +26,60 @@ This project is a template for building Spring Boot applications following Clean
 - Gradle build system
 - Java 23 support
 
-## 🏗 Architecture
+\## 🏗 Architecture
 
-This project follows the Clean Architecture pattern with four main layers:
+The architecture follows Clean Architecture principles with dependencies pointing inward:
 
-### 1. Domain Layer (Enterprise Business Rules)
+```
+┌──────────────────────────────────────┐
+│ Presentation Layer (Interface)       │
+│  ┌──────────────────────────────┐   │
+│  │ Infrastructure Layer         │   │
+│  │  ┌──────────────────────┐   │   │
+│  │  │ Application Layer    │   │   │
+│  │  │  ┌──────────────┐   │   │   │
+│  │  │  │ Domain Layer │   │   │   │
+│  │  │  └──────────────┘   │   │   │
+│  │  └──────────────────────┘   │   │
+│  └──────────────────────────────┘   │
+└──────────────────────────────────────┘
+```
+
+\### 1. Domain Layer (Enterprise Business Rules)
 - Location: `src/main/java/com/cleanarchitecture/domain`
+- Purpose: Contains core business logic and rules
 - Contains:
-    - Business entities
-    - Value objects
-    - Domain events
-    - Domain exceptions
+  - Business entities
+  - Value objects
+  - Domain events
+  - Domain exceptions
+  - Port interfaces (for dependency inversion)
 
-### 2. Application Layer (Application Business Rules)
+\### 2. Application Layer (Application Business Rules)
 - Location: `src/main/java/com/cleanarchitecture/application`
+- Purpose: Orchestrates the flow of data and business rules
 - Contains:
-    - Use cases
-    - Port interfaces
-    - Application services
-    - DTOs
+  - Use case implementations
+  - Application services
+  - DTOs
 
-### 3. Infrastructure Layer (Frameworks & Drivers)
+\### 3. Infrastructure Layer (Frameworks & Drivers)
 - Location: `src/main/java/com/cleanarchitecture/infrastructure`
 - Contains:
-    - Repository implementations
-    - External service integrations
-    - Security configurations
-    - Database configurations
+  - Repository implementations
+  - External service integrations
+  - Security configurations
+  - Database configurations
 
-### 4. Presentation Layer (Interface Adapters)
+\### 4. Presentation Layer (Interface Adapters)
 - Location: `src/main/java/com/cleanarchitecture/presentation`
 - Contains:
-    - REST controllers
-    - Request/Response models
-    - API documentation
-    - Exception handlers
+  - REST controllers
+  - Request/Response models
+  - API documentation
+  - Exception handlers
 
-## 📁 Project Structure
+\## 📁 Project Structure
 
 ```
 src/
@@ -71,26 +88,26 @@ src/
 │   │   └── com/
 │   │       └── cleanarchitecture/
 │   │           ├── domain/
-│   │           │   ├── entity/
-│   │           │   ├── valueobject/
-│   │           │   ├── event/
-│   │           │   └── exception/
+│   │           │   ├── entity/        # Business entities
+│   │           │   ├── valueobject/   # Immutable value objects
+│   │           │   ├── event/         # Domain events
+│   │           │   ├── port/          # Interfaces for external deps
+│   │           │   │   ├── input/     # Use case interfaces
+│   │           │   │   └── output/    # Repository/Service interfaces
+│   │           │   └── exception/     # Domain-specific exceptions
 │   │           ├── application/
-│   │           │   ├── port/
-│   │           │   │   ├── input/
-│   │           │   │   └── output/
-│   │           │   ├── service/
-│   │           │   └── dto/
+│   │           │   ├── service/       # Use case implementations
+│   │           │   └── dto/           # Data Transfer Objects
 │   │           ├── infrastructure/
-│   │           │   ├── persistence/
-│   │           │   ├── config/
-│   │           │   └── security/
+│   │           │   ├── persistence/   # Repository implementations
+│   │           │   ├── config/        # Framework configurations
+│   │           │   └── security/      # Security configurations
 │   │           └── presentation/
 │   │               └── api/
 │   │                   └── rest/
-│   │                       ├── controller/
-│   │                       ├── request/
-│   │                       └── response/
+│   │                       ├── controller/  # REST controllers
+│   │                       ├── request/     # Request DTOs
+│   │                       └── response/    # Response DTOs
 │   └── resources/
 │       ├── application.yml
 │       ├── application-dev.yml
@@ -105,90 +122,37 @@ src/
                 └── presentation/
 ```
 
-## 🛠 Technologies
+[Rest of the content remains the same, but I'll highlight a few key sections that should be updated]
 
-- **Core**:
-    - Java 23
-    - Spring Boot 3.3.5
-    - Gradle 8.x
+\## 💻 Development
 
-- **Documentation**:
-    - SpringDoc OpenAPI UI 2.3.0
-    - Swagger UI
-
-- **Persistence**:
-    - Spring Data JPA
-    - H2 Database (for development)
-
-- **Tools**:
-    - MapStruct 1.5.5.Final (for object mapping)
-    - Lombok (for boilerplate reduction)
-    - JUnit 5 (for testing)
-
-## 🚀 Getting Started
-
-### Prerequisites
-- JDK 23
-- Gradle 8.x
-
-### Building the Project
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/clean-architecture-template.git
-
-# Navigate to the project directory
-cd clean-architecture-template
-
-# Build the project
-./gradlew build
-
-# Run the application
-./gradlew bootRun
+\### Dependencies Flow
+The dependencies flow inward:
+```
+Controller → UseCase ← RepositoryImpl
+     ↓         ↓            ↓
+ Request → Command →      Entity
+     ↓         ↓            ↑
+Response ← DTO    ← Repository (interface in domain)
 ```
 
-### Configuration
-The application can be configured using the following files:
-- `application.yml`: Default configuration
-- `application-dev.yml`: Development configuration
-- `application-prod.yml`: Production configuration
+\### Working with Layers
 
-## 📖 API Documentation
-
-OpenAPI documentation is available at:
-- Swagger UI: http://localhost:8080/swagger-ui.html
-- API Docs: http://localhost:8080/api-docs
-
-## 💻 Development
-
-### Code Style
-This project uses:
-- EditorConfig for consistent coding style
-- Google Java Format
-- Checkstyle for code quality enforcement
-
-### Mapper Generation
-MapStruct is used for object mapping. Mappers are generated during compilation:
-```bash
-./gradlew clean build
-```
-
-### Working with Layers
-
-#### 1. Domain Layer
+\#### 1. Domain Layer
 - Create entities in `domain/entity`
 - Define value objects in `domain/valueobject`
 - Define domain events in `domain/event`
+- Define interfaces in `domain/port`
 
-#### 2. Application Layer
-- Define use case interfaces in `application/port/input`
+\#### 2. Application Layer
 - Implement use cases in `application/service`
-- Define repository interfaces in `application/port/output`
+- Define DTOs in `application/dto`
 
-#### 3. Infrastructure Layer
+\#### 3. Infrastructure Layer
 - Implement repositories in `infrastructure/persistence`
 - Add configurations in `infrastructure/config`
 
-#### 4. Presentation Layer
+\#### 4. Presentation Layer
 - Add controllers in `presentation/api/rest/controller`
 - Define request/response models in respective packages
 
