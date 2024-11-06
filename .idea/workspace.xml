@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9471666-c581-4d51-b7ac-a6e672283e25" name="Changes" comment="github: pre-commits, dependabot, ci">
+    <list default="true" id="f9471666-c581-4d51-b7ac-a6e672283e25" name="Changes" comment="fixing clean architecture by moving port into domain. contracts are inside port">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CLEANARCHITECTURE.md" beforeDir="false" afterPath="$PROJECT_DIR$/CleanArchitecture.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cleanarchitecture/application/port/input/CreateUserUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cleanarchitecture/domain/port/input/CreateUserUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cleanarchitecture/application/port/input/UseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cleanarchitecture/domain/port/input/UseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cleanarchitecture/application/port/output/EventPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cleanarchitecture/domain/port/output/EventPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cleanarchitecture/application/port/output/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cleanarchitecture/domain/port/output/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CleanArchitecture.md" beforeDir="false" afterPath="$PROJECT_DIR$/CleanArchitecture.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,15 +71,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/dimos/Desktop/Dev/clean-architecture-template&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/dimos/Desktop/Dev/clean-architecture-template",
+    "settings.editor.selected.configurable": "vcs.Git"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -122,12 +117,21 @@
       <option name="project" value="LOCAL" />
       <updated>1730821642331</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixing clean architecture by moving port into domain. contracts are inside port">
+      <option name="closed" value="true" />
+      <created>1730886253006</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1730886253006</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit. structure and readmes" />
     <MESSAGE value="github: pre-commits, dependabot, ci" />
-    <option name="LAST_COMMIT_MESSAGE" value="github: pre-commits, dependabot, ci" />
+    <MESSAGE value="fixing clean architecture by moving port into domain. contracts are inside port" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing clean architecture by moving port into domain. contracts are inside port" />
   </component>
 </project>
