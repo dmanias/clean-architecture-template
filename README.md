@@ -54,6 +54,12 @@ The architecture follows Clean Architecture principles with dependencies pointin
   - Domain events
   - Domain exceptions
   - Port interfaces (for dependency inversion)
+    - Input ports (use case interfaces)
+    - Output ports (repository/service interfaces)
+  - Validators
+    - Base validator interface
+    - Domain-specific validators
+  - Domain exceptions
 
 \### 2. Application Layer (Application Business Rules)
 - Location: `src/main/java/com/cleanarchitecture/application`
@@ -94,6 +100,7 @@ src/
 │   │           │   ├── port/          # Interfaces for external deps
 │   │           │   │   ├── input/     # Use case interfaces
 │   │           │   │   └── output/    # Repository/Service interfaces
+│   │           │   ├── validator/     # Domain validators
 │   │           │   └── exception/     # Domain-specific exceptions
 │   │           ├── application/
 │   │           │   ├── service/       # Use case implementations
@@ -143,6 +150,10 @@ Response ← DTO    ← Repository (interface in domain)
 - Define value objects in `domain/valueobject`
 - Define domain events in `domain/event`
 - Define interfaces in `domain/port`
+- Implement validators in `domain/validator`
+  - Create domain-specific validators
+  - Extend BaseValidator interface
+  - Handle validation logic for entities
 
 \#### 2. Application Layer
 - Implement use cases in `application/service`
